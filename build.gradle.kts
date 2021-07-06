@@ -28,8 +28,6 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:$fabricLoaderVersion")
     modImplementation("net.fabricmc.fabric-api:fabric-api:$fabricApiVersion")
     modImplementation("net.fabricmc:fabric-language-kotlin:$fabricLanguageKotlinVersion")
-    modImplementation("net.axay:fabrikmc-core:1.0.1-SNAPSHOT")
-    modImplementation("net.axay:fabrikmc-commands:1.0.1-SNAPSHOT")
 }
 
 tasks.withType<JavaCompile> {
