@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "package": "de.royzer.perspektive.mixins",
+  "compatibilityLevel": "JAVA_16",
+  "client": [
+    "CameraMixin",
+    "EntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
