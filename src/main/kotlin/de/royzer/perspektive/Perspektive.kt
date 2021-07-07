@@ -26,7 +26,7 @@ object Perspektive : ModInitializer {
 
     override fun onInitialize() {
         val useKeybind = KeyBindingHelper.registerKeyBinding(
-            KeyBinding("key.perspektive.use", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_LEFT_CONTROL, "Perspektive")
+            KeyBinding("Freelook", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_Y, "Perspektive")
         )
         ClientTickEvents.END_CLIENT_TICK.register {
             if (useKeybind.isPressed) {
