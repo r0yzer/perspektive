@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Camera.class)
 public abstract class CameraMixin {
-    private boolean isFirstTick = true;
+    private boolean firstPress = true;
 
     @Shadow
     protected abstract void setRotation(float yaw, float pitch);
@@ -28,14 +28,14 @@ public abstract class CameraMixin {
     )
     public void update(BlockView area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickDelta, CallbackInfo ci) {
         if (Perspektive.INSTANCE.getFreeLookEnabled()) {
-            if (isFirstTick) {
+            if (firstPress) {
                 Perspektive.setPitch(focusedEntity.getPitch());
                 Perspektive.setYaw(focusedEntity.getYaw());
             }
-            isFirstTick = false;
+            firstPress = false;
             this.setRotation(Perspektive.getYaw(), Perspektive.getPitch());
         } else {
-            isFirstTick = true;
+            firstPress = true;
         }
     }
 }

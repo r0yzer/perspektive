@@ -9,37 +9,26 @@ import net.minecraft.client.option.Perspective
 import net.minecraft.client.render.Camera
 import net.minecraft.client.util.InputUtil
 import net.minecraft.entity.Entity
+import net.minecraft.text.Text
 import net.minecraft.world.BlockView
 import org.apache.logging.log4j.Level
 import org.apache.logging.log4j.LogManager
 import org.lwjgl.glfw.GLFW
 
 object Perspektive : ModInitializer {
-
     // the pitch and yaw of the player when in freecam mode
     @JvmStatic
     var pitch: Float = 0F
     @JvmStatic
     var yaw: Float = 0F
-
     var freeLookEnabled = false
-    var freeLookToggled = false
-
     private var perspectiveBefore = Perspective.FIRST_PERSON
 
     override fun onInitialize() {
         val useKeybind = KeyBindingHelper.registerKeyBinding(
             KeyBinding("key.perspektive.use", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_LEFT_CONTROL, "Perspektive")
         )
-        val toggleKeybind = KeyBindingHelper.registerKeyBinding(
-            KeyBinding("key.perspektive.toggle", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_M, "Perspektive")
-        )
-
         ClientTickEvents.END_CLIENT_TICK.register {
-
-            if (toggleKeybind.isPressed)
-                freeLookToggled = !freeLookToggled
-
             if (useKeybind.isPressed) {
                 if (!freeLookEnabled)
                     perspectiveBefore = MinecraftClient.getInstance().options.perspective
