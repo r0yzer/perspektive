@@ -2,10 +2,11 @@ plugins {
     java
     kotlin("jvm") version "1.5.0"
     id("fabric-loom") version "0.8-SNAPSHOT"
+    id("com.matthewprenger.cursegradle") version "1.4.0"
 }
 
 group = "de.royzer"
-version = "0.1-SNAPSHOT"
+version = "1.0"
 
 val minecraftVersion = "1.17"
 val yarnMappingsVersion = "1.17+build.1:v2"
@@ -40,4 +41,23 @@ tasks.processResources {
     filesMatching("fabric.mod.json") {
         expand("version" to project.version)
     }
+}
+
+curseforge {
+    apiKey = findProperty("curseforge.token") ?: ""
+    project(closureOf<com.matthewprenger.cursegradle.CurseProject> {
+        mainArtifact(tasks.getByName("remapJar").outputs.files.first())
+
+        id = "501553"
+        releaseType = "release"
+        addGameVersion(minecraftVersion)
+
+        relations(closureOf<com.matthewprenger.cursegradle.CurseRelation> {
+            requiredDependency("fabric-api")
+            requiredDependency("fabric-language-kotlin")
+        })
+    })
+    options(closureOf<com.matthewprenger.cursegradle.Options> {
+        forgeGradleIntegration = false
+    })
 }
