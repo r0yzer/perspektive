@@ -1,8 +1,13 @@
+import com.modrinth.minotaur.request.Dependency.DependencyType
+import com.modrinth.minotaur.TaskModrinthUpload
+import com.modrinth.minotaur.request.VersionType
+
 plugins {
     java
     kotlin("jvm") version "1.5.0"
     id("fabric-loom") version "0.8-SNAPSHOT"
     id("com.matthewprenger.cursegradle") version "1.4.0"
+    id("com.modrinth.minotaur") version "1.2.1"
 }
 
 group = "de.royzer"
@@ -60,4 +65,25 @@ curseforge {
     options(closureOf<com.matthewprenger.cursegradle.Options> {
         forgeGradleIntegration = false
     })
+}
+
+tasks {
+    register<TaskModrinthUpload>("uploadModrinth") {
+        group = "upload"
+        onlyIf {
+            findProperty("modrinth.token") != null
+        }
+
+        token = findProperty("modrinth.token").toString()
+
+        projectId = "santxgdT"
+        versionNumber = rootProject.version.toString()
+        addGameVersion(minecraftVersion)
+        addLoader("fabric")
+        addDependency("gjN9CB30", DependencyType.REQUIRED)
+        addDependency("1qsZV7U7", DependencyType.REQUIRED)
+        versionType = VersionType.RELEASE
+
+        uploadFile = remapJar.get()
+    }
 }
