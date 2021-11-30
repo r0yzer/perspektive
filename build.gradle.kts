@@ -4,20 +4,20 @@ import com.modrinth.minotaur.request.VersionType
 
 plugins {
     java
-    kotlin("jvm") version "1.5.0"
-    id("fabric-loom") version "0.8-SNAPSHOT"
+    kotlin("jvm") version "1.6.0"
+    id("fabric-loom") version "0.10-SNAPSHOT"
     id("com.matthewprenger.cursegradle") version "1.4.0"
     id("com.modrinth.minotaur") version "1.2.1"
 }
 
 group = "de.royzer"
-version = "1.0"
+version = "1.0.1"
 
-val minecraftVersion = "1.17"
-val yarnMappingsVersion = "1.17+build.1:v2"
-val fabricLoaderVersion = "0.11.3"
-val fabricApiVersion = "0.34.9+1.17"
-val fabricLanguageKotlinVersion = "1.6.1+kotlin.1.5.10"
+val minecraftVersion = "1.18"
+val yarnMappingsVersion = "1.18+build.1:v2"
+val fabricLoaderVersion = "0.12.5"
+val fabricApiVersion = "0.43.1+1.18"
+val fabricLanguageKotlinVersion = "1.7.0+kotlin.1.6.0"
 
 java.sourceCompatibility = JavaVersion.VERSION_16
 java.targetCompatibility = JavaVersion.VERSION_16
