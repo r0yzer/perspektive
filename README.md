@@ -12,4 +12,4 @@ pacmc install Perspektive
 
 #### The "normal" way
 
-Download the mod from [curseforge](https://www.curseforge.com/minecraft/mc-mods/perspektive) and put it into your mods folder in the .minecraft directory
+Download the mod from [curseforge](https://www.curseforge.com/minecraft/mc-mods/perspektive) or [modrinth](https://modrinth.com/mod/perspektive/) and put it into your mods folder in the .minecraft directory
