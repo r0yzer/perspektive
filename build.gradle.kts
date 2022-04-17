@@ -1,26 +1,24 @@
-import com.modrinth.minotaur.request.Dependency.DependencyType
-import com.modrinth.minotaur.TaskModrinthUpload
-import com.modrinth.minotaur.request.VersionType
+import com.modrinth.minotaur.dependencies.ModDependency
 
 plugins {
     java
-    kotlin("jvm") version "1.6.0"
-    id("fabric-loom") version "0.10-SNAPSHOT"
+    kotlin("jvm") version "1.6.20"
+    id("fabric-loom") version "0.11-SNAPSHOT"
     id("com.matthewprenger.cursegradle") version "1.4.0"
-    id("com.modrinth.minotaur") version "1.2.1"
+    id("com.modrinth.minotaur") version "2.1.1"
 }
 
 group = "de.royzer"
-version = "1.0.1"
+version = "1.0.2"
 
-val minecraftVersion = "1.18"
-val yarnMappingsVersion = "1.18+build.1:v2"
-val fabricLoaderVersion = "0.12.5"
-val fabricApiVersion = "0.43.1+1.18"
-val fabricLanguageKotlinVersion = "1.7.0+kotlin.1.6.0"
+val minecraftVersion = "1.18.2"
+val yarnMappingsVersion = "1.18.2+build.3"
+val fabricLoaderVersion = "0.13.3"
+val fabricApiVersion = "0.50.0+1.18.2"
+val fabricLanguageKotlinVersion = "1.7.3+kotlin.1.6.20"
 
-java.sourceCompatibility = JavaVersion.VERSION_16
-java.targetCompatibility = JavaVersion.VERSION_16
+java.sourceCompatibility = JavaVersion.VERSION_17
+java.targetCompatibility = JavaVersion.VERSION_17
 
 repositories {
     mavenCentral()
@@ -36,15 +34,19 @@ dependencies {
     modImplementation("net.fabricmc:fabric-language-kotlin:$fabricLanguageKotlinVersion")
 }
 
-tasks.withType<JavaCompile> {
-    options.encoding = "UTF-8"
-}
+tasks {
+    compileJava {
+        options.encoding = "UTF-8"
+    }
+    compileKotlin {
+        targetCompatibility = "17"
+    }
+    processResources {
+        inputs.property("version", project.version)
 
-tasks.processResources {
-    inputs.property("version", project.version)
-
-    filesMatching("fabric.mod.json") {
-        expand("version" to project.version)
+        filesMatching("fabric.mod.json") {
+            expand("version" to project.version)
+        }
     }
 }
 
@@ -67,23 +69,19 @@ curseforge {
     })
 }
 
-tasks {
-    register<TaskModrinthUpload>("uploadModrinth") {
-        group = "upload"
-        onlyIf {
-            findProperty("modrinth.token") != null
-        }
+modrinth {
+    token.set(findProperty("modrinth.token").toString())
+    projectId.set("santxgdT")
+    versionNumber.set(rootProject.version.toString())
+    versionType.set("release")
+    uploadFile.set(tasks.remapJar.get())
+    gameVersions.addAll("1.18", "1.18.1", "1.18.2")
+    loaders.add("fabric")
 
-        token = findProperty("modrinth.token").toString()
-
-        projectId = "santxgdT"
-        versionNumber = rootProject.version.toString()
-        addGameVersion(minecraftVersion)
-        addLoader("fabric")
-        addDependency("gjN9CB30", DependencyType.REQUIRED)
-        addDependency("1qsZV7U7", DependencyType.REQUIRED)
-        versionType = VersionType.RELEASE
-
-        uploadFile = remapJar.get()
-    }
+    dependencies.set(
+        mutableListOf(
+            ModDependency("P7dR8mSH", "required"),
+            ModDependency("Ha28R6CL", "required")
+        )
+    )
 }
