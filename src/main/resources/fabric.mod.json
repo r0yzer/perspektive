@@ -14,7 +14,14 @@
     "minecraft": "1.18.x",
     "fabric-language-kotlin": "*",
     "fabricloader": ">=0.8.7",
-    "fabric": "*"
+    "fabric": "*",
+    "fabric-key-binding-api-v1": "*"
+  },
+  "description": "A straightforward freelook mod",
+  "contact": {
+    "sources": "https://github.com/r0yzer/perspektive",
+    "issues": "https://github.com/r0yzer/perspektive/issues",
+    "homepage": "https://modrinth.com/mod/perspektive"
   },
   "mixins": [
     "mod.mixins.json"
