@@ -24,6 +24,6 @@
     "homepage": "https://modrinth.com/mod/perspektive"
   },
   "mixins": [
-    "mod.mixins.json"
+    "perspektive.mixins.json"
   ]
 }
