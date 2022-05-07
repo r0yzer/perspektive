@@ -39,7 +39,7 @@ tasks {
         options.encoding = "UTF-8"
     }
     compileKotlin {
-        targetCompatibility = "17"
+        kotlinOptions.jvmTarget = "17"
     }
     processResources {
         inputs.property("version", project.version)
