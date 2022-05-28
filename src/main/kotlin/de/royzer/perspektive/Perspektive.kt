@@ -1,11 +1,11 @@
 package de.royzer.perspektive
 
+import com.mojang.blaze3d.platform.InputConstants
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper
-import net.minecraft.client.MinecraftClient
-import net.minecraft.client.option.KeyBinding
-import net.minecraft.client.option.Perspective
-import net.minecraft.client.util.InputUtil
+import net.minecraft.client.CameraType
+import net.minecraft.client.KeyMapping
+import net.minecraft.client.Minecraft
 import org.lwjgl.glfw.GLFW
 
 object Perspektive {
@@ -17,33 +17,33 @@ object Perspektive {
     var yaw: Float = 0F
     var freeLookEnabled = false
     var freeLookToggled = false
-    private var perspectiveBefore = Perspective.FIRST_PERSON
+    private var perspectiveBefore = CameraType.FIRST_PERSON
 
-    private val useKeybind: KeyBinding = KeyBindingHelper.registerKeyBinding(
-        KeyBinding("Freelook", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_Y, "Perspektive")
+    private val useKeybind: KeyMapping = KeyBindingHelper.registerKeyBinding(
+        KeyMapping("Freelook", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_Y, "Perspektive")
     )
-    private val toggleKeybind: KeyBinding = KeyBindingHelper.registerKeyBinding(
-        KeyBinding("Toggle Freelook", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_M, "Perspektive")
+    private val toggleKeybind: KeyMapping = KeyBindingHelper.registerKeyBinding(
+        KeyMapping("Toggle Freelook", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_M, "Perspektive")
     )
 
     fun init() {
         ClientTickEvents.END_CLIENT_TICK.register {
-            while (toggleKeybind.wasPressed()) {
+            while (toggleKeybind.consumeClick()) {
                 freeLookEnabled = true
-                MinecraftClient.getInstance().options.perspective = Perspective.THIRD_PERSON_BACK
+                Minecraft.getInstance().options.cameraType = CameraType.THIRD_PERSON_BACK
                 freeLookToggled = !freeLookToggled
             }
-            if (useKeybind.isPressed) {
+            if (useKeybind.isDown) {
                 if (freeLookToggled) return@register
                 else {
                     if (!freeLookEnabled)
-                        perspectiveBefore = MinecraftClient.getInstance().options.perspective
+                        perspectiveBefore = Minecraft.getInstance().options.cameraType
                     freeLookEnabled = true
-                    MinecraftClient.getInstance().options.perspective = Perspective.THIRD_PERSON_BACK
+                    Minecraft.getInstance().options.cameraType = CameraType.THIRD_PERSON_BACK
                 }
             } else if (freeLookEnabled && !freeLookToggled) {
                 freeLookEnabled = false
-                MinecraftClient.getInstance().options.perspective = perspectiveBefore
+                Minecraft.getInstance().options.cameraType = perspectiveBefore
             }
         }
     }

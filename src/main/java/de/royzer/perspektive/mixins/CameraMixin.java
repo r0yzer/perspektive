@@ -1,9 +1,9 @@
 package de.royzer.perspektive.mixins;
 
 import de.royzer.perspektive.Perspektive;
-import net.minecraft.client.render.Camera;
-import net.minecraft.entity.Entity;
-import net.minecraft.world.BlockView;
+import net.minecraft.client.Camera;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.BlockGetter;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -18,19 +18,19 @@ public abstract class CameraMixin {
     protected abstract void setRotation(float yaw, float pitch);
 
     @Inject(
-            method = "update",
+            method = "setup",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/client/render/Camera;setRotation(FF)V",
+                    target = "Lnet/minecraft/client/Camera;setRotation(FF)V",
                     shift = At.Shift.AFTER,
                     ordinal = 0
             )
     )
-    public void update(BlockView area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickDelta, CallbackInfo ci) {
+    public void update(BlockGetter area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickDelta, CallbackInfo ci) {
         if (Perspektive.INSTANCE.getFreeLookEnabled()) {
             if (firstPress) {
-                Perspektive.setPitch(focusedEntity.getPitch());
-                Perspektive.setYaw(focusedEntity.getYaw());
+                Perspektive.setPitch(focusedEntity.getXRot());
+                Perspektive.setYaw(focusedEntity.getYRot());
             }
             firstPress = false;
             this.setRotation(Perspektive.getYaw(), Perspektive.getPitch());
