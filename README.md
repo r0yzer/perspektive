@@ -4,7 +4,7 @@
 
 ## Installation
 
-#### Using [pacmc](https://github.com/bluefireoly/pacmc)
+#### Using [pacmc](https://github.com/jakobkmar/pacmc)
 
 ```sh
 pacmc install Perspektive
