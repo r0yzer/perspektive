@@ -15,6 +15,7 @@ object Perspektive {
 
     @JvmStatic
     var yaw: Float = 0F
+
     var freeLookEnabled = false
     var freeLookToggled = false
     private var perspectiveBefore = CameraType.FIRST_PERSON

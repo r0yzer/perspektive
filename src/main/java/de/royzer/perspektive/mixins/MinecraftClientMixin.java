@@ -11,11 +11,11 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(Minecraft.class)
 public class MinecraftClientMixin {
     @Redirect(
-            method = "handleKeybinds",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/client/Options;setCameraType(Lnet/minecraft/client/CameraType;)V"
-            )
+        method = "handleKeybinds",
+        at = @At(
+            value = "INVOKE",
+            target = "Lnet/minecraft/client/Options;setCameraType(Lnet/minecraft/client/CameraType;)V"
+        )
     )
     public void blockPerspectiveChange(Options instance, CameraType perspective) {
         if (!Perspektive.INSTANCE.getFreeLookToggled()) {

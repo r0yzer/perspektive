@@ -1,9 +1,6 @@
 package de.royzer.perspektive
 
-import org.apache.logging.log4j.Level
-import org.apache.logging.log4j.LogManager
-
 fun initClient() {
-    LogManager.getLogger().log(Level.INFO, "Perspektive initialized")
+    com.mojang.logging.LogUtils.getLogger().info("Perspektive initialized")
     Perspektive.init()
 }

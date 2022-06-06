@@ -10,11 +10,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Entity.class)
 public class EntityMixin {
     @Inject(
-            method = "turn",
-            at = @At(
-                    value = "HEAD"
-            ),
-            cancellable = true
+        method = "turn",
+        at = @At(
+            value = "HEAD"
+        ),
+        cancellable = true
     )
     private void changeLookDirection(double cursorDeltaX, double cursorDeltaY, CallbackInfo ci) {
         EntityMixinKt.blockPlayerRotation(cursorDeltaX, cursorDeltaY, ci);

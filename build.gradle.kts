@@ -1,58 +1,68 @@
 import com.modrinth.minotaur.dependencies.ModDependency
 
 plugins {
-    java
-    kotlin("jvm") version "1.6.20"
-    id("fabric-loom") version "0.11-SNAPSHOT"
-    id("com.matthewprenger.cursegradle") version "1.4.0"
-    id("com.modrinth.minotaur") version "2.1.1"
+    kotlin("jvm") version "1.6.21"
+    id("fabric-loom") version "0.12-SNAPSHOT"
+    id("com.modrinth.minotaur") version "2.2.0"
     id("org.quiltmc.quilt-mappings-on-loom") version "4.2.0"
-    id("io.github.juuxel.loom-quiltflower") version "1.7.1"
+    id("io.github.juuxel.loom-quiltflower") version "1.7.2"
+    id("com.matthewprenger.cursegradle") version "1.4.0"
 }
 
 group = "de.royzer"
-version = "1.0.2"
+version = "1.1.0"
 
-val minecraftVersion = "1.18.2"
-val yarnMappingsVersion = "1.18.2+build.3"
-val fabricLoaderVersion = "0.13.3"
-val fabricApiVersion = "0.50.0+1.18.2"
-val fabricLanguageKotlinVersion = "1.7.3+kotlin.1.6.20"
-
-java.sourceCompatibility = JavaVersion.VERSION_17
-java.targetCompatibility = JavaVersion.VERSION_17
+val minecraftVersion = "1.19-rc2"
 
 repositories {
     mavenCentral()
-    maven("https://maven.fabricmc.net/")
-    maven("https://oss.sonatype.org/content/repositories/snapshots")
 }
 
 dependencies {
     minecraft("com.mojang:minecraft:$minecraftVersion")
     mappings(loom.layered {
-        addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:1.18.2+build.23:v2"))
+        addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:$minecraftVersion+build.1:v2"))
         officialMojangMappings()
     })
-    modImplementation("net.fabricmc:fabric-loader:$fabricLoaderVersion")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:$fabricApiVersion")
-    modImplementation("net.fabricmc:fabric-language-kotlin:$fabricLanguageKotlinVersion")
+    modImplementation("net.fabricmc:fabric-loader:0.14.6")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.55.1+1.19")
+    modImplementation("net.fabricmc:fabric-language-kotlin:1.7.4+kotlin.1.6.21")
 }
 
 tasks {
     compileJava {
         options.encoding = "UTF-8"
+        options.release.set(17)
     }
     compileKotlin {
         kotlinOptions.jvmTarget = "17"
     }
     processResources {
-        inputs.property("version", project.version)
+        val props = mapOf("version" to project.version)
+
+        inputs.properties(props)
 
         filesMatching("fabric.mod.json") {
-            expand("version" to project.version)
+            expand(props)
         }
     }
+}
+
+modrinth {
+    token.set(findProperty("modrinth.token").toString())
+    projectId.set("santxgdT")
+    versionNumber.set(rootProject.version.toString())
+    versionType.set("release")
+    uploadFile.set(tasks.remapJar.get())
+    gameVersions.set(listOf(minecraftVersion))
+    loaders.add("fabric")
+
+    dependencies.set(
+        listOf(
+            ModDependency("P7dR8mSH", "required"),
+            ModDependency("Ha28R6CL", "required")
+        )
+    )
 }
 
 curseforge {
@@ -72,21 +82,4 @@ curseforge {
     options(closureOf<com.matthewprenger.cursegradle.Options> {
         forgeGradleIntegration = false
     })
-}
-
-modrinth {
-    token.set(findProperty("modrinth.token").toString())
-    projectId.set("santxgdT")
-    versionNumber.set(rootProject.version.toString())
-    versionType.set("release")
-    uploadFile.set(tasks.remapJar.get())
-    gameVersions.addAll("1.18", "1.18.1", "1.18.2")
-    loaders.add("fabric")
-
-    dependencies.set(
-        mutableListOf(
-            ModDependency("P7dR8mSH", "required"),
-            ModDependency("Ha28R6CL", "required")
-        )
-    )
 }
