@@ -7,6 +7,8 @@
   "id": "perspektive",
   "version": "${version}",
   "schemaVersion": 1,
+  "name"; "Perspektive"
+  "icon": "assets/perspektive/icon.png",
   "authors": [
     "r0yzer"
   ],
@@ -17,7 +19,7 @@
     "fabric": "*",
     "fabric-key-binding-api-v1": "*"
   },
-  "description": "A straightforward freelook mod",
+  "description": "A freelook mod for Fabric",
   "contact": {
     "sources": "https://github.com/r0yzer/perspektive",
     "issues": "https://github.com/r0yzer/perspektive/issues",
