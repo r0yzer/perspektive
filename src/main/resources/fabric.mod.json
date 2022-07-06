@@ -7,7 +7,7 @@
   "id": "perspektive",
   "version": "${version}",
   "schemaVersion": 1,
-  "name"; "Perspektive"
+  "name": "Perspektive"
   "icon": "assets/perspektive/icon.png",
   "authors": [
     "r0yzer"
