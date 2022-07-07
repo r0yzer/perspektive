@@ -9,6 +9,7 @@
   "schemaVersion": 1,
   "name": "Perspektive",
   "icon": "assets/perspektive/icon.png",
+  "license": "GPL-3.0",
   "authors": [
     "r0yzer"
   ],
