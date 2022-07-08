@@ -1,8 +1,12 @@
-<img src="https://raw.githubusercontent.com/RaptaG/perspektive/main/src/main/resources/assets/perspektive/icon.png" align="right">
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/RaptaG/perspektive/main/src/main/resources/assets/perspektive/icon.png">
 
 # Perspektive
 
 **`Perspektive`** is a freelook mod for Fabric. Its use is for looking around while locking your head rotation, so that you can e.g. trick people into thinking you are not looking what they are doing, or just view yourself.
+
+</div>
 
 ## Installation
 
