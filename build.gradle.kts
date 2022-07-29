@@ -23,8 +23,8 @@ repositories {
 dependencies {
     minecraft("com.mojang:minecraft:$minecraftVersion")
     mappings(loom.layered {
-        addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:$minecraftVersion+build.1:v2"))
         officialMojangMappings()
+//        addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:$minecraftVersion+build.1:v2"))
     })
     modImplementation("net.fabricmc:fabric-loader:0.14.8")
     modImplementation("net.fabricmc.fabric-api:fabric-api:0.58.5+1.19.1")
