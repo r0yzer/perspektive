@@ -13,7 +13,7 @@ public class CameraDistanceOption {
             "perspektive.distance",
             OptionInstance.noTooltip(),
             (optionText, value) -> Options.genericValueLabel(optionText, Component.literal(String.valueOf(Double.parseDouble(String.valueOf(value)) / 10.0))),
-            new OptionInstance.IntRange(0, 640), 0,
+            new OptionInstance.IntRange(0, 640), (int) (PerspektiveSettings.INSTANCE.getCameraDistance() * 10),
             integer -> PerspektiveSettings.INSTANCE.setCameraDistance(Double.parseDouble(integer.toString()) / 10)
     );
 }
