@@ -4,7 +4,7 @@ plugins {
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.serialization") version "1.6.21"
     id("fabric-loom") version "0.12-SNAPSHOT"
-    id("com.modrinth.minotaur") version "2.2.0"
+    id("com.modrinth.minotaur") version "2.4.3"
     id("org.quiltmc.quilt-mappings-on-loom") version "4.2.1"
     id("io.github.juuxel.loom-quiltflower") version "1.7.2"
     id("com.matthewprenger.cursegradle") version "1.4.0"
@@ -62,9 +62,9 @@ modrinth {
 
     dependencies.set(
         listOf(
-            ModDependency("3fY6NddT", "required"),
-            ModDependency("5Aq3SFbi", "required"),
-            ModDependency("2Ys0a7JE", "optional")
+            ModDependency("P7dR8mSH", "required"),
+            ModDependency("Ha28R6CL", "required"),
+            ModDependency("mOgUt4GM", "optional")
         )
     )
 }
