@@ -20,6 +20,9 @@
     "fabric": "*",
     "fabric-key-binding-api-v1": "*"
   },
+  "suggests": {
+    "modmenu": "*"
+  },
   "description": "A straightforward freelook mod",
   "contact": {
     "sources": "https://github.com/r0yzer/perspektive",
