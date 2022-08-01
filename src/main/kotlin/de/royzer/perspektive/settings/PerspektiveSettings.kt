@@ -37,4 +37,4 @@ fun saveConfig() {
     )))
 }
 
-val configFile = File(Minecraft.getInstance().gameDirectory , "perspektive.json")
+val configFile = File(Minecraft.getInstance().gameDirectory.path + "/config", "perspektive.json")
