@@ -2,6 +2,9 @@
   "entrypoints": {
     "client": [
       "de.royzer.perspektive.MainKt::initClient"
+    ],
+    "modmenu": [
+      "de.royzer.perspektive.settings.ModMenuApiImpl"
     ]
   },
   "id": "perspektive",
@@ -21,6 +24,9 @@
     "fabric-key-binding-api-v1": "*"
   },
   "description": "A freelook mod for Fabric",
+  "suggests": {
+    "modmenu": "*"
+  },
   "contact": {
     "sources": "https://github.com/r0yzer/perspektive",
     "issues": "https://github.com/r0yzer/perspektive/issues",

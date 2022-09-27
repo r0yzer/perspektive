@@ -4,7 +4,7 @@
 
 # Perspektive
 
-**`Perspektive`** is a freelook mod for Fabric. Its use is for looking around while locking your head rotation, so that you can e.g. trick people into thinking you are not looking what they are doing, or just view yourself.
+**Perspektive** is a freelook mod for Fabric. Its use is for looking around while locking your head rotation, so that you can e.g. trick people into thinking you are not looking what they are doing, or just view yourself.
 
 </div>
 

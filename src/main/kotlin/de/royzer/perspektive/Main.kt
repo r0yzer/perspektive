@@ -1,6 +1,8 @@
 package de.royzer.perspektive
 
+import com.mojang.logging.LogUtils
+
 fun initClient() {
-    com.mojang.logging.LogUtils.getLogger().info("Perspektive initialized")
     Perspektive.init()
+    LogUtils.getLogger().info("Perspektive initialized")
 }
