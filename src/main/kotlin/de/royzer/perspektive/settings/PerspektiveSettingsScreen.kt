@@ -1,12 +1,12 @@
 package de.royzer.perspektive.settings
 
 import com.mojang.blaze3d.vertex.PoseStack
-import de.royzer.perspektive.CameraDistanceOption
+import net.minecraft.client.OptionInstance
+import net.minecraft.client.Options
 import net.minecraft.client.gui.components.Button
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.network.chat.CommonComponents
 import net.minecraft.network.chat.Component
-
 
 class PerspektiveSettingsScreen(
     private val lastScreen: Screen
@@ -14,29 +14,41 @@ class PerspektiveSettingsScreen(
 
     override fun init() {
         addRenderableWidget(
-            Button(this.width / 2 - 185, this.height / 6 + 24 - 6, 250, 20, Component.translatable("perspektive.returnToFirstPerson").append(": ").append(if (PerspektiveSettings.shouldReturnToFirstPerson) CommonComponents.OPTION_ON else CommonComponents.OPTION_OFF)) {
+            Button.builder(Component.translatable("perspektive.returnToFirstPerson").append(": ").append(if (PerspektiveSettings.shouldReturnToFirstPerson) CommonComponents.OPTION_ON else CommonComponents.OPTION_OFF)) {
                 PerspektiveSettings.shouldReturnToFirstPerson = !PerspektiveSettings.shouldReturnToFirstPerson
                 this.minecraft?.setScreen(this)
             }
+                .pos(this.width / 2 - 185, this.height / 6 + 24 - 6)
+                .size(250, 20)
+                .build()
         )
         addRenderableWidget(
-            Button(this.width / 2 + 85, this.height / 6 + 24 - 6, 100, 20, Component.nullToEmpty("Reset")) {
+            Button.builder(Component.nullToEmpty("Reset")) {
                 PerspektiveSettings.shouldReturnToFirstPerson = false
                 this.minecraft?.setScreen(this)
             }
+                .pos(this.width / 2 + 85, this.height / 6 + 24 - 6)
+                .size(100, 20)
+                .build()
         )
-        addRenderableWidget(CameraDistanceOption.cameraDistanceOption.createButton(this.minecraft!!.options, width / 2 - 185, height / 6 + 48, 250))
+        addRenderableWidget(cameraDistanceOption.createButton(this.minecraft!!.options, width / 2 - 185, height / 6 + 48, 250))
         addRenderableWidget(
-            Button(this.width / 2 + 85, this.height / 6 + 48, 100, 20, Component.nullToEmpty("Reset")) {
+            Button.builder(Component.nullToEmpty("Reset")) {
                 PerspektiveSettings.cameraDistance = 0.0
-                CameraDistanceOption.cameraDistanceOption.set(0)
+                cameraDistanceOption.set(0)
                 this.minecraft?.setScreen(this)
             }
+                .pos(this.width / 2 + 85, this.height / 6 + 48)
+                .size(100, 20)
+                .build()
         )
         addRenderableWidget(
-            Button(width / 2 - 100, this.height - 35, 200, 20, CommonComponents.GUI_DONE) {
+            Button.builder(CommonComponents.GUI_DONE) {
                 onClose()
             }
+                .pos(this.width / 2 - 100, this.height - 35)
+                .size(200, 20)
+                .build()
         )
     }
 
@@ -52,10 +64,8 @@ class PerspektiveSettingsScreen(
     }
 }
 
-// not usable until remapping issue fix
-//no idea what this does it creates this slider thing somehow
-//val cameraDistance = OptionInstance("perspektive.distance", OptionInstance.noTooltip(), { optionText: Component, value: Int ->
-//    Options.genericValueLabel(optionText, Component.literal("${value.toDouble() / 10.0}"))
-//}, OptionInstance.IntRange(0, 640), 0) {
-//    PerspektiveSettings.cameraDistance = it / 10.0
-//}
+val cameraDistanceOption = OptionInstance("perspektive.distance", OptionInstance.noTooltip(), { optionText, value ->
+        Options.genericValueLabel(optionText, Component.literal((value.toString().toDouble() / 10.0).toString()))
+}, OptionInstance.IntRange(0, 640), (PerspektiveSettings.cameraDistance * 10).toInt()) {
+    PerspektiveSettings.cameraDistance = it.toString().toDouble() / 10
+}
