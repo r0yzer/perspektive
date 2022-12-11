@@ -1,19 +1,19 @@
 import com.modrinth.minotaur.dependencies.ModDependency
 
 plugins {
-    kotlin("jvm") version "1.6.21"
-    kotlin("plugin.serialization") version "1.6.21"
-    id("fabric-loom") version "0.12-SNAPSHOT"
-    id("com.modrinth.minotaur") version "2.4.3"
-    id("org.quiltmc.quilt-mappings-on-loom") version "4.2.1"
-    id("io.github.juuxel.loom-quiltflower") version "1.7.2"
+    kotlin("jvm") version "1.7.22"
+    kotlin("plugin.serialization") version "1.7.22"
+    id("fabric-loom") version "1.0-SNAPSHOT"
+    id("com.modrinth.minotaur") version "2.4.5"
+    id("org.quiltmc.quilt-mappings-on-loom") version "4.2.3"
+    id("io.github.juuxel.loom-quiltflower") version "1.8.0"
     id("com.matthewprenger.cursegradle") version "1.4.0"
 }
 
 group = "de.royzer"
 version = "1.2.1"
 
-val minecraftVersion = "1.19.1"
+val minecraftVersion = "1.19.3"
 
 repositories {
     mavenCentral()
@@ -22,14 +22,11 @@ repositories {
 
 dependencies {
     minecraft("com.mojang:minecraft:$minecraftVersion")
-    mappings(loom.layered {
-        officialMojangMappings()
-//        addLayer(quiltMappings.mappings("org.quiltmc:quilt-mappings:$minecraftVersion+build.1:v2")) (https://github.com/FabricMC/fabric-loom/issues/693 i think)
-    })
-    modImplementation("net.fabricmc:fabric-loader:0.14.8")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.58.5+1.19.1")
-    modImplementation("net.fabricmc:fabric-language-kotlin:1.8.2+kotlin.1.7.10")
-    modApi("com.terraformersmc:modmenu:4.0.5")
+    mappings(loom.officialMojangMappings())
+    modImplementation("net.fabricmc:fabric-loader:0.14.11")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.69.0+1.19.3")
+    modImplementation("net.fabricmc:fabric-language-kotlin:1.8.7+kotlin.1.7.22")
+    modApi("com.terraformersmc:modmenu:5.0.2")
 }
 
 tasks {
@@ -53,12 +50,12 @@ tasks {
 
 modrinth {
     token.set(findProperty("modrinth.token").toString())
-    projectId.set("santxgdT")
+    projectId.set("perspektive")
     versionNumber.set(rootProject.version.toString())
     versionType.set("release")
     uploadFile.set(tasks.remapJar.get())
     gameVersions.set(listOf(minecraftVersion))
-    loaders.add("fabric")
+    loaders.addAll(listOf("fabric", "quilt"))
 
     dependencies.set(
         listOf(
