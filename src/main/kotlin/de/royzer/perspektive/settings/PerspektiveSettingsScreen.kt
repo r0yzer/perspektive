@@ -1,7 +1,6 @@
 package de.royzer.perspektive.settings
 
-import net.minecraft.client.OptionInstance
-import net.minecraft.client.Options
+import de.royzer.perspektive.CameraDistanceOption
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.components.Button
 import net.minecraft.client.gui.screens.Screen
@@ -31,11 +30,11 @@ class PerspektiveSettingsScreen(
                 .size(100, 20)
                 .build()
         )
-        addRenderableWidget(cameraDistanceOption.createButton(this.minecraft!!.options, width / 2 - 185, height / 6 + 48, 250))
+        addRenderableWidget(CameraDistanceOption.cameraDistanceOption.createButton(this.minecraft!!.options, width / 2 - 185, height / 6 + 48, 250))
         addRenderableWidget(
             Button.builder(Component.nullToEmpty("Reset")) {
                 PerspektiveSettings.cameraDistance = 0.0
-                cameraDistanceOption.set(0)
+                CameraDistanceOption.cameraDistanceOption.set(0)
                 this.minecraft?.setScreen(this)
             }
                 .pos(this.width / 2 + 85, this.height / 6 + 48)
@@ -63,8 +62,8 @@ class PerspektiveSettingsScreen(
     }
 }
 
-val cameraDistanceOption = OptionInstance("perspektive.distance", OptionInstance.noTooltip(), { optionText, value ->
-        Options.genericValueLabel(optionText, Component.literal((value.toString().toDouble() / 10.0).toString()))
-}, OptionInstance.IntRange(0, 640), (PerspektiveSettings.cameraDistance * 10).toInt()) {
-    PerspektiveSettings.cameraDistance = it.toString().toDouble() / 10
-}
+//val cameraDistanceOption = OptionInstance("perspektive.distance", OptionInstance.noTooltip(), { optionText, value ->
+//        Options.genericValueLabel(optionText, Component.literal((value.toString().toDouble() / 10.0).toString()))
+//}, OptionInstance.IntRange(0, 640), (PerspektiveSettings.cameraDistance * 10).toInt()) {
+//    PerspektiveSettings.cameraDistance = it.toString().toDouble() / 10
+//}
