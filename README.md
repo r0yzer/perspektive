@@ -14,4 +14,4 @@ pacmc install Perspektive
 
 Download the mod from [curseforge](https://www.curseforge.com/minecraft/mc-mods/perspektive) or [modrinth](https://modrinth.com/mod/perspektive/) and put it into your mods folder in the .minecraft directory
 
-To access the settings GUI install [ModMenu]("https://modrinth.com/mod/modmenu") and click on the "configure" button
+To access the settings GUI install [ModMenu](https://modrinth.com/mod/modmenu) and click on the "configure" button
