@@ -1,8 +1,8 @@
 package de.royzer.perspektive.settings
 
-import com.mojang.blaze3d.vertex.PoseStack
 import net.minecraft.client.OptionInstance
 import net.minecraft.client.Options
+import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.components.Button
 import net.minecraft.client.gui.screens.Screen
 import net.minecraft.network.chat.CommonComponents
@@ -57,10 +57,9 @@ class PerspektiveSettingsScreen(
         this.minecraft?.setScreen(lastScreen)
     }
 
-    override fun render(matrices: PoseStack, mouseX: Int, mouseY: Int, delta: Float) {
-        renderBackground(matrices)
-        drawCenteredString(matrices, font, title, width / 2, 15, 0xFFFFFF)
-        super.render(matrices, mouseX, mouseY, delta)
+    override fun render(guiGraphics: GuiGraphics, i: Int, j: Int, f: Float) {
+        renderBackground(guiGraphics)
+        super.render(guiGraphics, i, j, f)
     }
 }
 

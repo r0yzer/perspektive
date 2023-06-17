@@ -26,7 +26,7 @@ dependencies {
     modImplementation("net.fabricmc:fabric-loader:0.14.21")
     modImplementation("net.fabricmc.fabric-api:fabric-api:0.83.1+1.20.1")
     modImplementation("net.fabricmc:fabric-language-kotlin:1.9.5+kotlin.1.8.22")
-    modApi("com.terraformersmc:modmenu:5.0.2")
+    modApi("com.terraformersmc:modmenu:7.0.1")
 }
 
 tasks {
@@ -78,9 +78,17 @@ curseforge {
         relations(closureOf<com.matthewprenger.cursegradle.CurseRelation> {
             requiredDependency("fabric-api")
             requiredDependency("fabric-language-kotlin")
+            optionalDependency("modmenu")
         })
     })
     options(closureOf<com.matthewprenger.cursegradle.Options> {
         forgeGradleIntegration = false
     })
+}
+
+
+configurations.all {
+    resolutionStrategy {
+        force("net.fabricmc:fabric-loader:0.14.21")
+    }
 }
