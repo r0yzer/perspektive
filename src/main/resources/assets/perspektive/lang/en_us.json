@@ -1,5 +1,6 @@
 {
   "perspektive.returnToFirstPerson": "Always return to first person",
   "perspektive.distance": "Distance to camera",
-  "modmenu.descriptionTranslation.perspektive": "A straightforward freelook mod"
+  "modmenu.descriptionTranslation.perspektive": "A straightforward freelook mod",
+  "perspektive.blockInventoryScrolling": "Block inventory scrolling while in freelook"
 }

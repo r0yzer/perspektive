@@ -5,7 +5,8 @@
   "client": [
     "CameraMixin",
     "EntityMixin",
-    "MinecraftClientMixin"
+    "MinecraftClientMixin",
+    "InventoryMixin"
   ],
   "injectors": {
     "defaultRequire": 1

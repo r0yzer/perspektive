@@ -12,8 +12,12 @@ class PerspektiveSettingsScreen(
 ) : Screen(Component.literal("Perspektive")) {
 
     override fun init() {
+        // return to first person
         addRenderableWidget(
-            Button.builder(Component.translatable("perspektive.returnToFirstPerson").append(": ").append(if (PerspektiveSettings.shouldReturnToFirstPerson) CommonComponents.OPTION_ON else CommonComponents.OPTION_OFF)) {
+            Button.builder(
+                Component.translatable("perspektive.returnToFirstPerson").append(": ")
+                    .append(if (PerspektiveSettings.shouldReturnToFirstPerson) CommonComponents.OPTION_ON else CommonComponents.OPTION_OFF)
+            ) {
                 PerspektiveSettings.shouldReturnToFirstPerson = !PerspektiveSettings.shouldReturnToFirstPerson
                 this.minecraft?.setScreen(this)
             }
@@ -30,7 +34,15 @@ class PerspektiveSettingsScreen(
                 .size(100, 20)
                 .build()
         )
-        addRenderableWidget(CameraDistanceOption.cameraDistanceOption.createButton(this.minecraft!!.options, width / 2 - 185, height / 6 + 48, 250))
+        // camera distance
+        addRenderableWidget(
+            CameraDistanceOption.cameraDistanceOption.createButton(
+                this.minecraft!!.options,
+                width / 2 - 185,
+                height / 6 + 48,
+                250
+            )
+        )
         addRenderableWidget(
             Button.builder(Component.nullToEmpty("Reset")) {
                 PerspektiveSettings.cameraDistance = 0.0
@@ -41,6 +53,29 @@ class PerspektiveSettingsScreen(
                 .size(100, 20)
                 .build()
         )
+        // inventory scrolling
+        addRenderableWidget(
+            Button.builder(
+                Component.translatable("perspektive.blockInventoryScrolling").append(": ")
+                    .append(if (PerspektiveSettings.blockInventoryScrolling) CommonComponents.OPTION_ON else CommonComponents.OPTION_OFF)
+            ) {
+                PerspektiveSettings.blockInventoryScrolling = !PerspektiveSettings.blockInventoryScrolling
+                this.minecraft?.setScreen(this)
+            }
+                .pos(this.width / 2 - 185, this.height / 6 + 78)
+                .size(250, 20)
+                .build()
+        )
+        addRenderableWidget(
+            Button.builder(Component.nullToEmpty("Reset")) {
+                PerspektiveSettings.blockInventoryScrolling = true
+                this.minecraft?.setScreen(this)
+            }
+                .pos(this.width / 2 + 85, this.height / 6 + 78)
+                .size(100, 20)
+                .build()
+        )
+
         addRenderableWidget(
             Button.builder(CommonComponents.GUI_DONE) {
                 onClose()
