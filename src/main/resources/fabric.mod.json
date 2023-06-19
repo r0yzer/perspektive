@@ -10,6 +10,7 @@
   "id": "perspektive",
   "version": "${version}",
   "schemaVersion": 1,
+  "environment": "client",
   "authors": [
     "r0yzer"
   ],
