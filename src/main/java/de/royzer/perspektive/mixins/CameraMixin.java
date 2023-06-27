@@ -3,6 +3,8 @@ package de.royzer.perspektive.mixins;
 import de.royzer.perspektive.Perspektive;
 import de.royzer.perspektive.settings.PerspektiveSettings;
 import net.minecraft.client.Camera;
+import net.minecraft.client.CameraType;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
 import org.spongepowered.asm.mixin.Mixin;
@@ -24,14 +26,17 @@ public abstract class CameraMixin {
     @Shadow
     protected abstract double getMaxZoom(double desiredCameraDistance);
 
+    @Shadow
+    private Entity entity;
+
     @Inject(
-        method = "setup",
-        at = @At(
-            value = "INVOKE",
-            target = "Lnet/minecraft/client/Camera;setRotation(FF)V",
-            shift = At.Shift.AFTER,
-            ordinal = 0
-        )
+            method = "setup",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/client/Camera;setRotation(FF)V",
+                    shift = At.Shift.AFTER,
+                    ordinal = 0
+            )
     )
     public void update(BlockGetter area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickDelta, CallbackInfo ci) {
         if (Perspektive.INSTANCE.getFreeLookEnabled()) {
@@ -51,7 +56,9 @@ public abstract class CameraMixin {
             at = @At("TAIL")
     )
     public void setDistance(BlockGetter area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickDelta, CallbackInfo ci) {
-        if (Perspektive.INSTANCE.getFreeLookEnabled()) {
+        if (Perspektive.INSTANCE.getFreeLookEnabled() ||
+                (PerspektiveSettings.INSTANCE.getCameraDistanceAlsoIn3rdPerson()
+                        && Minecraft.getInstance().options.getCameraType() != CameraType.FIRST_PERSON)) {
             this.move(-this.getMaxZoom(PerspektiveSettings.INSTANCE.getCameraDistance()), 0.0, 0.0);
         }
     }

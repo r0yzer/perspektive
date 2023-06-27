@@ -8,12 +8,14 @@ import kotlin.math.sign
 object InventoryMixinKt {
     @JvmStatic
     fun onScroll(d: Double, ci: CallbackInfo) {
+        if (!Perspektive.freeLookEnabled && !PerspektiveSettings.cameraDistanceAlsoIn3rdPerson) return
+        if (!PerspektiveSettings.scrollingEnabled) return
         val i = sign(d)
         val nextDistance = PerspektiveSettings.cameraDistance - i
         if (nextDistance < 0.0) PerspektiveSettings.cameraDistance = 0.0
         else if (nextDistance > 64.0) PerspektiveSettings.cameraDistance = 64.0
         else PerspektiveSettings.cameraDistance -= i
-        if (PerspektiveSettings.blockInventoryScrolling && Perspektive.freeLookEnabled)
+        if ((PerspektiveSettings.blockInventoryScrolling && Perspektive.freeLookEnabled) || (PerspektiveSettings.cameraDistanceAlsoIn3rdPerson && PerspektiveSettings.blockInventoryScrolling))
             ci.cancel()
     }
 }

@@ -2,5 +2,9 @@
   "perspektive.returnToFirstPerson": "Immer in First-Person zurückkehren",
   "perspektive.distance": "Distanz zur Kamera",
   "modmenu.descriptionTranslation.perspektive": "Ein einfacher Freelook-Mod",
-  "perspektive.blockInventoryScrolling": "Inventar-Scrolling verhinden in Freelook"
+  "perspektive.blockInventoryScrolling": "Inventar-Scrolling verhinden in Freelook",
+  "perspektive.scrollingEnabled": "Mausrad-Scrolling während in Freelook",
+  "perspektive.tooltips.scrollingEnabled": "Wirkt nur wenn Mausrad-Scrolling in Freelook an ist",
+  "perspektive.cameraDistanceInThirdPerson": "In thirdperson Kameradistanz nutzen",
+  "perspektive.tooltips.cameraDistanceInThirdPerson": "Auch in der 'normalen' thirdperson die angegebene Kameradistanz nutzen"
 }
