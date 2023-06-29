@@ -6,5 +6,5 @@
   "perspektive.scrollingEnabled": "Scroll to change the camera distance",
   "perspektive.tooltips.scrollingEnabled": "Only applies if scrolling to change the camera distance is enabled",
   "perspektive.cameraDistanceInThirdPerson": "Use camera distance in third person",
-  "perspektive.tooltips.cameraDistanceInThirdPerson": "Also uses the specified camera distance in 'normal' third person view"
+  "perspektive.tooltips.cameraDistanceInThirdPerson": "Also uses the specified camera distance in 'normal' third person view and enables scrolling aswell"
 }
