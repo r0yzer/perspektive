@@ -1,9 +1,9 @@
 import com.modrinth.minotaur.dependencies.ModDependency
 
 plugins {
-    kotlin("jvm") version "1.8.22"
-    kotlin("plugin.serialization") version "1.8.22"
-    id("fabric-loom") version "1.2-SNAPSHOT"
+    kotlin("jvm") version "1.9.20"
+    kotlin("plugin.serialization") version "1.9.20"
+    id("fabric-loom") version "1.4-SNAPSHOT"
     id("com.modrinth.minotaur") version "2.8.1"
     id("org.quiltmc.quilt-mappings-on-loom") version "4.2.3"
     id("io.github.juuxel.loom-quiltflower") version "1.9.0"
@@ -11,9 +11,9 @@ plugins {
 }
 
 group = "de.royzer"
-version = "1.3.2"
+version = "1.3.4"
 
-val minecraftVersion = "1.20.1"
+val minecraftVersion = "1.20.2"
 
 repositories {
     mavenCentral()
@@ -23,10 +23,10 @@ repositories {
 dependencies {
     minecraft("com.mojang:minecraft:$minecraftVersion")
     mappings(loom.officialMojangMappings())
-    modImplementation("net.fabricmc:fabric-loader:0.14.21")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.83.1+1.20.1")
-    modImplementation("net.fabricmc:fabric-language-kotlin:1.9.5+kotlin.1.8.22")
-    modApi("com.terraformersmc:modmenu:7.0.1")
+    modImplementation("net.fabricmc:fabric-loader:0.14.24")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.90.7+1.20.2")
+    modImplementation("net.fabricmc:fabric-language-kotlin:1.10.13+kotlin.1.9.20")
+    modApi("com.terraformersmc:modmenu:8.0.0")
 }
 
 tasks {
@@ -89,6 +89,6 @@ curseforge {
 
 configurations.all {
     resolutionStrategy {
-        force("net.fabricmc:fabric-loader:0.14.21")
+//        force("net.fabricmc:fabric-loader:0.14.21")
     }
 }

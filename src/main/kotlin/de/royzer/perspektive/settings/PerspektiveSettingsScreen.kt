@@ -140,7 +140,7 @@ class PerspektiveSettingsScreen(
     }
 
     override fun render(guiGraphics: GuiGraphics, i: Int, j: Int, f: Float) {
-        renderBackground(guiGraphics)
+//        renderBackground(guiGraphics)
         super.render(guiGraphics, i, j, f)
     }
 }
