@@ -3,17 +3,16 @@ import com.modrinth.minotaur.dependencies.ModDependency
 plugins {
     kotlin("jvm") version "1.9.20"
     kotlin("plugin.serialization") version "1.9.20"
-    id("fabric-loom") version "1.4-SNAPSHOT"
+    id("fabric-loom") version "1.7-SNAPSHOT"
     id("com.modrinth.minotaur") version "2.8.1"
     id("org.quiltmc.quilt-mappings-on-loom") version "4.2.3"
-    id("io.github.juuxel.loom-quiltflower") version "1.9.0"
     id("com.matthewprenger.cursegradle") version "1.4.0"
 }
 
 group = "de.royzer"
-version = "1.3.4"
+version = "1.4.0"
 
-val minecraftVersion = "1.20.2"
+val minecraftVersion = "1.21"
 
 repositories {
     mavenCentral()
@@ -23,10 +22,10 @@ repositories {
 dependencies {
     minecraft("com.mojang:minecraft:$minecraftVersion")
     mappings(loom.officialMojangMappings())
-    modImplementation("net.fabricmc:fabric-loader:0.14.24")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.90.7+1.20.2")
+    modImplementation("net.fabricmc:fabric-loader:0.15.11")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.100.3+1.21")
     modImplementation("net.fabricmc:fabric-language-kotlin:1.10.13+kotlin.1.9.20")
-    modApi("com.terraformersmc:modmenu:8.0.0")
+    modApi("com.terraformersmc:modmenu:11.0.0")
 }
 
 tasks {

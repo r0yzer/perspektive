@@ -21,10 +21,10 @@ public abstract class CameraMixin {
     protected abstract void setRotation(float yaw, float pitch);
 
     @Shadow
-    protected abstract void move(double x, double y, double z);
+    protected abstract void move(float x, float y, float z);
 
     @Shadow
-    protected abstract double getMaxZoom(double desiredCameraDistance);
+    protected abstract float getMaxZoom(float desiredCameraDistance);
 
     @Shadow
     private Entity entity;
@@ -59,7 +59,7 @@ public abstract class CameraMixin {
         if (Perspektive.INSTANCE.getFreeLookEnabled() ||
                 (PerspektiveSettings.INSTANCE.getCameraDistanceAlsoIn3rdPerson()
                         && Minecraft.getInstance().options.getCameraType() != CameraType.FIRST_PERSON)) {
-            this.move(-this.getMaxZoom(PerspektiveSettings.INSTANCE.getCameraDistance()), 0.0, 0.0);
+            this.move(-this.getMaxZoom((float)PerspektiveSettings.INSTANCE.getCameraDistance()), 0.0F, 0.0F);
         }
     }
 }
