@@ -6,7 +6,7 @@
     "CameraMixin",
     "EntityMixin",
     "MinecraftClientMixin",
-    "InventoryMixin"
+    "MouseHandlerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

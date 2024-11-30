@@ -35,7 +35,7 @@ public abstract class CameraMixin {
                     value = "INVOKE",
                     target = "Lnet/minecraft/client/Camera;setRotation(FF)V",
                     shift = At.Shift.AFTER,
-                    ordinal = 0
+                    ordinal = 1
             )
     )
     public void update(BlockGetter area, Entity focusedEntity, boolean thirdPerson, boolean inverseView, float tickDelta, CallbackInfo ci) {

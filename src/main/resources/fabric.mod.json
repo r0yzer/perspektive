@@ -15,7 +15,7 @@
     "r0yzer"
   ],
   "depends": {
-    "minecraft": "1.21",
+    "minecraft": ["1.21.2", "1.21.3"],
     "fabric-language-kotlin": "*",
     "fabricloader": ">=0.8.7",
     "fabric": "*",
