@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "de.royzer"
-version = "1.4.1"
+version = "1.4.2"
 
 val minecraftVersion = "1.21.3"
 
