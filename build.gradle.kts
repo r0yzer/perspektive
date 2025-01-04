@@ -10,9 +10,9 @@ plugins {
 }
 
 group = "de.royzer"
-version = "1.4.2"
+version = "1.4.3"
 
-val minecraftVersion = "1.21.3"
+val minecraftVersion = "1.21.4"
 
 repositories {
     mavenCentral()
@@ -23,7 +23,7 @@ dependencies {
     minecraft("com.mojang:minecraft:$minecraftVersion")
     mappings(loom.officialMojangMappings())
     modImplementation("net.fabricmc:fabric-loader:0.16.9")
-    modImplementation("net.fabricmc.fabric-api:fabric-api:0.109.0+1.21.3")
+    modImplementation("net.fabricmc.fabric-api:fabric-api:0.114.0+1.21.4")
     modImplementation("net.fabricmc:fabric-language-kotlin:1.12.3+kotlin.2.0.21")
     modApi("com.terraformersmc:modmenu:12.0.0-beta.1")
 }
