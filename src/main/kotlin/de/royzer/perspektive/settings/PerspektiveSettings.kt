@@ -1,9 +1,7 @@
 package de.royzer.perspektive.settings
 
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import net.minecraft.client.Minecraft
-import java.io.File
+import net.fabricmc.loader.api.FabricLoader
 
 @kotlinx.serialization.Serializable
 object PerspektiveSettings {
@@ -57,4 +55,4 @@ fun saveConfig() {
     )
 }
 
-val configFile = File(Minecraft.getInstance().gameDirectory.path + "/config", "perspektive.json")
+val configFile = FabricLoader.getInstance().configDir.resolve("perspektive.json").toFile()

@@ -4,7 +4,6 @@ import de.royzer.perspektive.Perspektive
 import de.royzer.perspektive.settings.PerspektiveSettings
 import net.minecraft.client.CameraType
 import net.minecraft.client.Minecraft
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo
 import kotlin.math.sign
 
 object MouseHandlerMixinKt {

@@ -10,7 +10,6 @@ import net.minecraft.client.KeyMapping
 import net.minecraft.client.KeyMapping.Category
 import net.minecraft.client.Minecraft
 import net.minecraft.resources.Identifier
-import org.lwjgl.glfw.GLFW
 
 object Perspektive {
     // the pitch and yaw of the player when in freecam mode
@@ -29,10 +28,10 @@ object Perspektive {
     )
 
     private val useKeybind: KeyMapping = KeyMappingHelper.registerKeyMapping(
-        KeyMapping("Freelook", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_Y, modKeybindCategory)
+        KeyMapping("Freelook", InputConstants.Type.KEYBOARD, InputConstants.KEY_Y, modKeybindCategory)
     )
     private val toggleKeybind: KeyMapping = KeyMappingHelper.registerKeyMapping(
-        KeyMapping("Toggle Freelook", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_M, modKeybindCategory)
+        KeyMapping("Toggle Freelook", InputConstants.Type.KEYBOARD, InputConstants.KEY_M, modKeybindCategory)
     )
 
     fun init() {
