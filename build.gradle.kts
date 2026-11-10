@@ -4,19 +4,16 @@ import com.modrinth.minotaur.dependencies.ModDependency
 val minecraftVersion = project.property("minecraft_version") as String
 val modVersion = project.property("mod_version") as String
 val loaderVersion = project.property("loader_version") as String
-val loomVersion = project.property("loom_version") as String
 val fabricAPIVersion = project.property("fabric_version") as String
 val kotlinVersion = project.property("fabric_language_kotlin_version") as String
 val modmenuVersion = project.property("modmenu_version") as String
 val groupString = project.property("group") as String
 
-
-
 plugins {
-    kotlin("jvm") version "2.3.21"
-    kotlin("plugin.serialization") version "2.3.21"
-    id("net.fabricmc.fabric-loom") version "1.15-SNAPSHOT"
-    id("com.modrinth.minotaur") version "2.8.7"
+    kotlin("jvm") version "2.4.21"
+    kotlin("plugin.serialization") version "2.4.21"
+    id("net.fabricmc.fabric-loom") version "1.19-SNAPSHOT"
+    id("com.modrinth.minotaur") version "2.10.0"
     id("com.matthewprenger.cursegradle") version "1.4.0"
 }
 
